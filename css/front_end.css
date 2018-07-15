@@ -1,0 +1,332 @@
+/*=== 版面編排 start ===*/
+  body{
+    font-family: 'Righteous', cursive, '微軟正黑體';
+    color:#333;
+    border-color:#333;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+  }
+  .flipCard_page{
+    background-color: #ffe689;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 30px 0px;
+  }
+  .flipCard_page_bg .img{
+    background-image: url(../images/sn.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    padding:80%;
+    transform: rotate(0deg);
+    filter: saturate(3)brightness(3);
+    animation: page_bg_img 200s linear infinite;
+  }
+  @keyframes page_bg_img{
+    form{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+  }
+  .flipCard_page_bg:before {
+    content: '3';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -100px;
+    font-size: 2000px;
+    color: #fff;
+    line-height: 1300px;
+    opacity: .7;
+  }
+  .flipCard_page_bg:after {
+    content: '';
+    display: block;
+    width: 600px;
+    height: 150px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform: rotate(-135deg) translate(25%,-50%);
+    box-shadow: 300px 250px #FFF, -300px 250px #fff;
+    opacity: .7;
+  }
+
+  .flipwrap{
+    letter-spacing: 1px;
+    line-height: 24px;
+    padding: 0 15px;
+  }
+  .flipwrap h2{
+    font-size:50px;
+    text-transform:uppercase;
+    color:#ff6a70;
+  }
+  .flipwrap h3{
+    font-size:40px;
+    color:#ff6a70;
+  }
+  .flipwrap .texthtml{
+    font-size:20px;
+  }
+
+  .flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 15px;
+  }
+/*=== 版面編排 end ===*/
+
+/*=== 計時器 start ===*/
+  .fliptime img{
+    width: 80%;
+    height: auto;
+  }
+  .fliptime{width: 100%;}
+  .fliptime .num{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 5px 5px 5px 3px #333;
+    border: 5px solid #b2e5d4;
+    font-size:40px;
+  }
+/*=== 計時器 end ===*/
+
+/*=== 卡片 start ===*/
+  .flipCard{
+    text-align: center;
+    line-height: 24px;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 700px;
+    box-shadow: 5px 5px 5px 3px #333;
+    border: 5px solid #b2e5d4;
+  }
+
+  .card{
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 30px; /* 得超過黃色陰影 */
+    user-select: none; /* 關閉使用者功能 */
+    transform-style: preserve-3d; /* 給予3D功能 */
+    transition: transform 0.5s; /* 給予轉場效果 */
+  }
+
+  .card.open{
+    transform: rotateY(180deg);
+  }
+  .card.open .front:before{
+    opacity: 0;
+    transition:opacity 0s;
+  }
+
+  .card > div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius:50%;
+    backface-visibility: hidden; /* 關閉背後顯影 */
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position:center;
+    /*border:15px solid #fbe389;*/ /* 會推向右邊 */
+    box-shadow: 0 0 0 15px #fbe389;
+  }
+
+  .front{
+    background-color:#ff6a70;
+  }
+
+  .front:before{
+    content: 'Mister Donuts';
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    height: 0px;
+    position: absolute;
+    top: -45%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transition:opacity .5s linear;
+  }
+
+  .back{
+    background-color: #fff;
+    transform: rotateY(180deg);
+  }
+/*=== 卡片 end ===*/
+
+/*=== modal 置中 start ===*/
+  .modal-dialog {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .modal.fade .modal-dialog {
+    -webkit-transform: translate(0, -100%);
+            transform: translate(0, -100%);
+  }
+  .modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+/*=== modal 置中 end ===*/
+
+/*=== modal 自訂動畫 && 樣式 start ===*/
+  /*.flipCard_modal {
+    opacity: 0;
+    -webkit-transition: opacity .35s ease;
+    -o-transition: opacity .35s ease;
+    transition: opacity .35s ease;
+  }
+
+  .flipCard_modal.in {
+    opacity: 1;
+    -webkit-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
+    transition: opacity .5s ease-in-out;
+  }*/
+  .modal-backdrop.in{opacity: .9;}
+  .flipCard_page.in{
+    animation:scale_two .5s .2s ease-in-out forwards;
+  }
+  .flipCard_correct_modal,
+  .flipCard_fail_modal{
+    transform:scale(0);
+  }
+  .flipCard_correct_modal.in,
+  .flipCard_fail_modal.in{
+    animation:scale .5s .2s cubic-bezier(0,.34,.46,2.05) forwards;
+  }
+  .flipCard_correct_modal .modal-title{
+    font-size: 18px;
+    color: #ff6a70;
+    letter-spacing: 1px;
+  }
+  @keyframes scale{
+    0%{transform:scale(0);}
+    100%{transform:scale(1);}
+  }
+  @keyframes scale_two{
+    0%{transform:scale(1);}
+    100%{transform:scale(2.5);}
+  }
+
+  .flipCard_modal_body{
+    border-radius: 5px;
+    overflow: hidden;
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+  }
+  .flipCard_modal_body img{
+    width: 100%;
+    height: auto;
+  }
+  .flipCard_modal_body button{
+    width: 100%;
+    background-color: #ff6a70;
+    color: #fff;
+    border-radius: unset;
+  }
+
+  /* 開始 modal start */
+    .flipCard_start_modal .flipCard_modal_body{
+      background-color: #ffe689;
+      border:5px solid #ff6a70;
+    }
+    .flipCard_start_modal .modal-header,
+    .flipCard_start_modal .modal-footer{border-color:#fff;}
+    .flipCard_start_modal .flipCard_modal_body img{width: 100px;}
+    .flipCard_start_modal h3{
+      font-weight: bolder;
+      margin: 10px 0;
+    }
+    .flipCard_start_modal p{font-size:18px;}
+  /* 開始 modal end */
+/*=== modal 自訂動畫 && 樣式 end ===*/
+
+/*=== RWD start ===*/
+  @media screen and (max-width: 1280px){
+    /* 計時器 */
+    .fliptime img{
+      width: 200px;
+      margin: 30px;
+    }
+    .fliptime .num{
+      padding: 10px;
+      font-size:30px;
+    }
+    /* 內文 */
+    .flipwrap h2{font-size:30px;}
+    .flipwrap h3{font-size:20px;}
+    .flipwrap .texthtml{font-size:18px;}
+    /* 卡片 */
+    .flipCard{
+      width: 500px;
+      line-height: 18px;
+    }
+    .card{
+      margin: 25px 15px;
+      width: 80px;
+      height: 80px;
+    }
+    .card > div{box-shadow: 0 0 0 10px #fbe389;}
+    .front:before{font-size:16px;}
+  }
+  @media screen and (max-width: 414px){
+    /* 計時器 */
+    .fliptime{margin: 30px;}
+    /* 內文 */
+    .flipwrap{display: none;}
+    /* 卡片 */
+    .flex{
+      min-height:auto;
+      width: 95%;
+      margin: 0 auto;
+    }
+    .flipCard{
+      width: 100%;
+      line-height: 12px;
+      margin-bottom: 80px;
+    }
+    .card{
+      width: 50px;
+      height: 50px;
+    }
+    .front:before{font-size:12px;}
+  }
+/*=== RWD end ===*/
+
+
