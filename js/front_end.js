@@ -5,7 +5,7 @@
     var data = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8] //以陣列來表示對應的卡牌 = 排著隊，但有跟著妳的朋友一起排
     var open = null //沒有卡牌 = 比較衰的人，可能傻傻站很久還沒拿到牌
     var set_time,
-        num = 300,
+        num = 120,
         num_js = num
     var $flipCard = $('.flipCard_page'),
         $p_num = $('.fliptime .num'),
@@ -52,9 +52,8 @@
     }
     //---打亂data陣列的順序
     function sort() {
-        if (isSafari) {
+        if (isSafari) { //why? A:https://www.cnblogs.com/fayin/p/9023342.html
             data.sort((a, b) => Math.random(b) - Math.random(a))
-            alert(data)
             return false;
         }
         data.sort(function(a, b) { // 最小到最大
@@ -95,6 +94,8 @@
             num--
             // console.log(num)
             $p_num.text(num)
+                //倒數變色
+            if (num == 60) $p_num.css({ 'color': '#f00' })
             if (num == 0) {
                 function fn_1() {
                     return new Promise((resolve, reject) => {
@@ -124,6 +125,7 @@
     //---計時器關閉與重設
     function flip_cleartime() {
         clearInterval(set_time)
+        $p_num.attr('style', '')
         num = num_js
     }
 
