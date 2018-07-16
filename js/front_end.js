@@ -10,8 +10,9 @@
     var $flipCard = $('.flipCard_page'),
         $p_num = $('.fliptime .num'),
         $fail_modal = $('.flipCard_fail_modal'),
-        $correct_modal = $('.flipCard_correct_modal')
-        // console.log(data)
+        $correct_modal = $('.flipCard_correct_modal'),
+        isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    // console.log(data)
 
     //========== 函式庫 ==========
     //---點擊事件函式
@@ -51,10 +52,14 @@
     }
     //---打亂data陣列的順序
     function sort() {
+        if (isSafari) {
+            data.sort((a, b) => Math.random(b) - Math.random(a))
+            alert(data)
+            return false;
+        }
         data.sort(function(a, b) { // 最小到最大
             return Math.round(Math.random()) // 打亂順序 = 排著隊，但妳的朋友可能去方便洗手間之類而被擠到後面一起排
         })
-        alert(data)
     }
     //---全對獎勵函式
     function flip_modal() {
