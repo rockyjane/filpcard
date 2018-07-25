@@ -1,4 +1,10 @@
 /*=== 版面編排 start ===*/
+*,*:before,*:after{
+    -webkit-touch-action:manipulation;
+    -moz-touch-action:manipulation;
+    -ms-touch-action:manipulation;
+    touch-action:manipulation;
+}
 
 body {
     font-family: 'Righteous', cursive, '微軟正黑體';
