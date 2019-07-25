@@ -56,9 +56,10 @@
             data.sort((a, b) => Math.random(b) - Math.random(a))
             return false;
         }
-        data.sort(function(a, b) { // 最小到最大
-            return Math.round(Math.random()) // 打亂順序 = 排著隊，但妳的朋友可能去方便洗手間之類而被擠到後面一起排
-        })
+        // data.sort(function(a, b) { // 最小到最大
+        //     return Math.round(Math.random()) // 打亂順序 = 排著隊，但妳的朋友可能去方便洗手間之類而被擠到後面一起排
+        // })
+        data.sort((a, b) => Math.random(b) - Math.random(a))
     }
     //---全對獎勵函式
     function flip_modal() {
